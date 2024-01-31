@@ -14,7 +14,7 @@ def main(request):
             email = form.cleaned_data['email']
             content = form.cleaned_data['content']
 
-            document = DocxTemplate('reseption/mp/word_templates/template_docx.docx')
+            document = DocxTemplate('/home/teqilkka/media')
             context = {
                 'number' : name
             }
