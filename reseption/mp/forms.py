@@ -12,6 +12,12 @@ class Form_mp(forms.ModelForm):
 
 
 class MyForm(forms.Form):
-    name = forms.CharField(label='Имя')
-    email = forms.EmailField(label='Email')
-    content = forms.CharField(label='Текст', widget=forms.Textarea)
+    number_mp = forms.IntegerField(label='Номер материального пропуска')
+    name_si = forms.IntegerField(label='Наименование имущества', required=False)
+    osnovamie = forms.CharField(label='Email', required=False)
+    fio = forms.CharField(label='Имя Фамилия', required=False)
+    # time_created = forms.DateTimeField(label='Время оформления пропуска')
+    vid_transfer = forms.CharField(label='Вид транспорта', required=False)
+    where = forms.CharField(label='Куда', required=False)
+    owner = forms.CharField(label='Пропуск выдал:', required=False)
+    soglasoval = forms.CharField(label='Согласовал ->', required=False)

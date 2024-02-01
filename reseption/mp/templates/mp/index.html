@@ -7,19 +7,21 @@
 </head>
 <body>
 
-<h1>Изминения на сайте</h1>
-
+<h1>Изменения для Аяны Сулейменовой</h1>
+<p>Лично для неё </p>
 <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <p>Form</p>
 
-
     {% for f in form %}
         <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>
+
         <div class="form-error">{{ f.errors }}</div>
     {% endfor %}
-    <p><button type="submit">Add</button></p>
+    <p><button type="submit">Создать МП</button></p>
 </form>
 
 </body>
 </html>
+
+

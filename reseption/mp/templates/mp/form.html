@@ -1,0 +1,38 @@
+<!-- my_form.html -->
+
+<form method="post" action="{% url 'main' %}">
+  {% csrf_token %}
+
+
+  {{ form.number_mp.label_tag }} {{ form.number_mp }}
+  <br>
+  {{ form.name_si.label_tag }} {{ form.name_si }}
+
+  {{ form.osnovamie.label_tag }} {{ form.osnovamie }}
+  <br>
+  {{ form.fio.label_tag }} {{ form.fio }}
+  <br>
+  {{ form.vid_transfer.label_tag }} {{ form.vid_transfer }}
+  <br>
+  {{ form.where.label_tag }} {{ form.where }}
+  <br>
+  {{ form.owner.label_tag }} {{ form.owner }}
+  <br>
+  {{ form.soglasoval.label_tag }} {{ form.soglasoval }}
+  <br>
+
+  <style>
+    /* Пример стилей, замените на свои собственные */
+    label {
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 200px;
+      padding: 5px;
+    }
+  </style>
+
+  <!-- Кнопка отправки формы -->
+  <button type="submit">Отправить</button>
+</form>
