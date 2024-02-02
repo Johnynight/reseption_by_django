@@ -3,8 +3,9 @@
 <form method="post" action="{% url 'main' %}">
   {% csrf_token %}
 
+<!--  {{ form.number_mp.label_tag }} {{ form.number_mp }}-->
+  <input type="text" name="{{ form.number_mp.name }}" value="{{ number_mp }}" required>
 
-  {{ form.number_mp.label_tag }} {{ form.number_mp }}
   <br>
   {{ form.name_si.label_tag }} {{ form.name_si }}
 

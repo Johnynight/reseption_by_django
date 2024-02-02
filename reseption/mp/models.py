@@ -1,7 +1,8 @@
 from django.db import models
 
+
 class Material_pass(models.Model):
-    serial_number = models.IntegerField(max_length=10, blank=False,
+    serial_number = models.IntegerField( blank=False,
                                         verbose_name='Номер материального номера',
                                         unique=True)
     name_property = models.CharField(max_length=255, blank=False, verbose_name='Наименование имущества')

@@ -1,17 +1,21 @@
 from datetime import datetime
-
+from .models import Material_pass
 from django.shortcuts import render
 from .forms import MyForm
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from docxtpl import DocxTemplate
 import io
+from django.utils import timezone
+
 
 data = datetime.now().strftime("%d.%m.%Y")
 time = datetime.today().time().strftime("%H:%M")
 
 
+
 def main(request):
+    number_mp = Material_pass.objects.last()
     if request.method == "POST":
         form = MyForm(request.POST)
         if form.is_valid():
@@ -36,10 +40,23 @@ def main(request):
                 'owner': owner,
                 'why': soglasoval
             }
-            # document.add_heading(f'Отчет от {name}', level=1)
-            # document.add_paragraph(f'Имя: {name}')
-            # document.add_paragraph(f'Email: {email}')
-            # document.add_paragraph(f'Текст: {content}')
+
+            new_entry = Material_pass(
+                serial_number = number_mp,
+                name_property = name_si,
+                reason = osnovamie,
+                time_registration = timezone.now(),
+                type_transport = vid_transfer,
+                where_from = where,
+                issued_pass = owner,
+                today_data = timezone.now(),
+                approved = soglasoval
+
+
+            )
+
+            new_entry.save()
+
             document.render(context)
 
             # Создаем байтовый поток
@@ -58,7 +75,8 @@ def main(request):
         print('Error')
         form = MyForm()
 
-    return render(request, 'mp/form.html', {'form': form})
+    return render(request, 'mp/form.html', {'form': form,
+                                            'number_mp': number_mp.serial_number + 1})
 
 
 def form2(request):
