@@ -1,39 +1,76 @@
-<!-- my_form.html -->
-
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+  <title>Материальный пропуск</title>
+</head>
+<body>
 <form method="post" action="{% url 'main' %}">
   {% csrf_token %}
 
-<!--  {{ form.number_mp.label_tag }} {{ form.number_mp }}-->
-  <input type="text" name="{{ form.number_mp.name }}" value="{{ number_mp }}" required>
-
-  <br>
-  {{ form.name_si.label_tag }} {{ form.name_si }}
-
-  {{ form.osnovamie.label_tag }} {{ form.osnovamie }}
-  <br>
-  {{ form.fio.label_tag }} {{ form.fio }}
-  <br>
-  {{ form.vid_transfer.label_tag }} {{ form.vid_transfer }}
-  <br>
-  {{ form.where.label_tag }} {{ form.where }}
-  <br>
-  {{ form.owner.label_tag }} {{ form.owner }}
-  <br>
-  {{ form.soglasoval.label_tag }} {{ form.soglasoval }}
+  <!-- Input for Number MP -->
+  <label for="{{ form.number_mp.id_for_label }}">{{ form.number_mp.label_tag }}</label>
+  <input type="text" name="{{ form.number_mp.name }}" id="{{ form.number_mp.id_for_label }}" value="{{ number_mp }}" required>
   <br>
 
-  <style>
-    /* Пример стилей, замените на свои собственные */
-    label {
-      font-weight: bold;
-    }
+  <!-- Input for Name SI -->
+  <label for="{{ form.name_si.id_for_label }}">{{ form.name_si.label_tag }}</label>
+  {{ form.name_si }}
+  <br>
 
-    input[type="text"] {
-      width: 200px;
-      padding: 5px;
-    }
-  </style>
+  <!-- Input for Osnovamie -->
+  <label for="{{ form.osnovamie.id_for_label }}">{{ form.osnovamie.label_tag }}</label>
+  {{ form.osnovamie }}
+  <br>
 
-  <!-- Кнопка отправки формы -->
+  <!-- Input for FIO -->
+  <label for="{{ form.fio.id_for_label }}">{{ form.fio.label_tag }}</label>
+  {{ form.fio }}
+  <br>
+
+  <!-- Input for Vid Transfer -->\
+  <label for="{{ form.vid_transfer.id_for_label }}">
+  <select class="form-select" aria-label="Default select example" >
+    <option selected>Open this select menu</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+    <option value="4"><input type="text"></option>
+  </select>
+    </label>
+
+
+<!--  <label for="{{ form.vid_transfer.id_for_label }}">{{ form.vid_transfer.label_tag }}</label>-->
+<!--  {{ form.vid_transfer }}-->
+  <br>
+
+  <!-- Input for Where -->
+  <label for="{{ form.where.id_for_label }}">{{ form.where.label_tag }}</label>
+  {{ form.where }}
+  <br>
+
+  <!-- Input for Owner -->
+  <label for="{{ form.owner.id_for_label }}">{{ form.owner.label_tag }}</label>
+  {{ form.owner }}
+  <br>
+
+  <!-- Input for Soglasoval -->
+  <label for="{{ form.soglasoval.id_for_label }}">{{ form.soglasoval.label_tag }}</label>
+  {{ form.soglasoval }}
+  <br>
+
   <button type="submit">Отправить</button>
+  <div class="btn-group">
+      <a href="#" class="btn btn-primary active" aria-current="page">Active link</a>
+      <a href="#" class="btn btn-primary">Link</a>
+      <a href="#" class="btn btn-primary">Link</a>
+    </div>
+
 </form>
+
+</body>

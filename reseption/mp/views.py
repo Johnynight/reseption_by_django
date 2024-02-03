@@ -28,7 +28,8 @@ def main(request):
             owner = form.cleaned_data['owner']
             soglasoval = form.cleaned_data['soglasoval']
 
-            document = DocxTemplate('reseption/mp/word_templates/template_docx.docx')
+            document = DocxTemplate('reseption/mp/word_templates/template_docx.docx') # /home/teqilkka/media/template_docx.docx
+
             context = {
                 'number': number_mp,
                 'name_si': name_si,
@@ -75,7 +76,7 @@ def main(request):
         print('Error')
         form = MyForm()
 
-    return render(request, 'mp/form.html', {'form': form,
+    return render(request, 'mp/sample.html', {'form': form,
                                             'number_mp': number_mp.serial_number + 1})
 
 
