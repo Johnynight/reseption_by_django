@@ -27,7 +27,7 @@ def main(request):
             where = form.cleaned_data['where']
             owner = form.cleaned_data['owner']
             soglasoval = form.cleaned_data['soglasoval']
-
+            # / home / teqilkka / media / template_docx.docx
             document = DocxTemplate('reseption/mp/word_templates/template_docx.docx') # /home/teqilkka/media/template_docx.docx
 
             context = {

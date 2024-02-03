@@ -3,91 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Title</title>
+    <title>Материальный пропуск</title>
 </head>
 <body>
 
 <nav class="navbar bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <img src="https://br-industrial.kz/img/logo/borusan.jpg" alt="Logo" width="200" height="50" class="d-inline-block align-text-top">
-      Borusan CAT
-    </a>
-  </div>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="https://br-industrial.kz/img/logo/borusan.jpg" alt="Logo" width="200" height="50"
+                 class="d-inline-block align-text-top">
+        </a>
+    </div>
 </nav>
 
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4"> <h2>Создание материального пропуска</h2></div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4" style="background-color: #ff999">
-                <div class="input-group">
-                  <span class="input-group-text">Номер</span>
-                  <input type="text" aria-label="First name" class="form-control">
-                </div>
-            </div>
-            <div class="col-md-4" style="background-color: #ff999">
-                <div class="input-group mb-3">
-                  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Выбрать</button>
-                  <ul class="dropdown-menu">
-                    <li>Action</li>
-
-                  </ul>
-                  <input type="text" class="form-control" aria-label="Text input with dropdown button">
-            </div>
-            </div>
-            <div class="col-md-4" style="background-color: #ff999">first</div>
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <h2>Создание материального пропуска</h2>
         </div>
     </div>
-        </body>
+
+    <form method="post" action="{% url 'main' %}">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-text">Номер МП</span>
+                    <input type="text" aria-label="Номер" disabled class="form-control" value="{{ number_mp }}">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-text">Наименование имущества</span>
+                    <input type="text" aria-label="Наименование" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group mb-3">
+                    <select class="form-select" aria-label="Default select example" id="values" onchange="updateInput()" >
+                        <option selected>На право вывоза</option>
+                        <option value="1">ТТН№</option>
+                        <option value="2">АКТ приема передачи №</option>
+                        <option value="3">Avis накладная</option>
+                        <option value="4">ТОО Ki-Bay</option>
+                        <option value="5">ТОО КМФ Имсталькон</option>
+                        <option value="6">Накладная на отпуск запасов на сторону</option>
+                        <option value="7">Накладная на внутреннее перемещение запасов</option>
+                        <option value="custom">Другое</option>
+                    </select>
+                </div>
+                <input type="text" class="form-control" id="customValue"  placeholder="None">
+       
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-text">Фамилия и Имя</span>
+              <input type="text" aria-label="First name" class="form-control">
+              <input type="text" aria-label="Last name" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group mb-3">
+              <select class="form-select" aria-label="Default select example" id="values_driver" onchange="updateInput_for_driver()" >
+                  <option selected>Перевозчик</option>
+                  <option value="1">ИП "Джакупов А.К."</option>
+                  <option value="2">Avis</option>
+                  <option value="custom">Другое</option>
+              </select>
+          </div>
+          <input type="text" class="form-control" style="display: none;" id="driver"  placeholder="None">
+
+          
+          </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    function updateInput() {
+      var select = document.getElementById("values");
+    var customValueInput = document.getElementById("customValue");
+
+    var selectedOption = select.options[select.selectedIndex];
+    var selectedOptionText = selectedOption.innerText;
+
+    customValueInput.setAttribute('aria-placeholder', selectedOptionText);
+    // или
+    customValueInput.placeholder = selectedOptionText;
+}
+
+function updateInput_for_driver() {
+  var select = document.getElementById("values_driver");
+  var customValueInput = document.getElementById("driver");
+        if (select.value === "custom") {
+            customValueInput.style.display = "inline-block";
+        } else {
+            customValueInput.style.display = "none";
+        }
+    }
+</script>
+
+</body>
 </html>
-
-
-<!--<div class="input-group mb-3">-->
-<!--  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>-->
-<!--  <ul class="dropdown-menu">-->
-<!--    <li><a class="dropdown-item" href="#">Action</a></li>-->
-<!--    <li><a class="dropdown-item" href="#">Another action</a></li>-->
-<!--    <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-<!--    <li><hr class="dropdown-divider"></li>-->
-<!--    <li><a class="dropdown-item" href="#">Separated link</a></li>-->
-<!--  </ul>-->
-<!--  <input type="text" class="form-control" aria-label="Text input with dropdown button">-->
-<!--</div>-->
-
-<!--<div class="input-group mb-3">-->
-<!--  <input type="text" class="form-control" aria-label="Text input with dropdown button">-->
-<!--  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>-->
-<!--  <ul class="dropdown-menu dropdown-menu-end">-->
-<!--    <li><a class="dropdown-item" href="#">Action</a></li>-->
-<!--    <li><a class="dropdown-item" href="#">Another action</a></li>-->
-<!--    <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-<!--    <li><hr class="dropdown-divider"></li>-->
-<!--    <li><a class="dropdown-item" href="#">Separated link</a></li>-->
-<!--  </ul>-->
-<!--</div>-->
-
-<!--<div class="input-group">-->
-<!--  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>-->
-<!--  <ul class="dropdown-menu">-->
-<!--    <li><a class="dropdown-item" href="#">Action before</a></li>-->
-<!--    <li><a class="dropdown-item" href="#">Another action before</a></li>-->
-<!--    <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-<!--    <li><hr class="dropdown-divider"></li>-->
-<!--    <li><a class="dropdown-item" href="#">Separated link</a></li>-->
-<!--  </ul>-->
-<!--  <input type="text" class="form-control" aria-label="Text input with 2 dropdown buttons">-->
-<!--  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>-->
-<!--  <ul class="dropdown-menu dropdown-menu-end">-->
-<!--    <li><a class="dropdown-item" href="#">Action</a></li>-->
-<!--    <li><a class="dropdown-item" href="#">Another action</a></li>-->
-<!--    <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-<!--    <li><hr class="dropdown-divider"></li>-->
-<!--    <li><a class="dropdown-item" href="#">Separated link</a></li>-->
-<!--  </ul>-->
-<!--</div>-->
