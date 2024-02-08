@@ -74,3 +74,33 @@
 </form>
 
 </body>
+
+
+
+<!-- your_template.html -->
+<form method="post" action="{% url 'your_view_name' %}">
+    {% csrf_token %}
+
+    <!-- Your other form fields here -->
+
+    <div class="col-md-4">
+        <div class="input-group mb-3">
+            <select class="form-select" aria-label="Default select example" id="values" onchange="updateInput()" name="{{ form.name_si.name }}" >
+                <option selected>На право вывоза</option>
+                <option value="1">ТТН№</option>
+                <option value="2">АКТ приема передачи №</option>
+                <option value="3">Avis накладная</option>
+                <option value="4">ТОО Ki-Bay</option>
+                <option value="5">ТОО КМФ Имсталькон</option>
+                <option value="6">Накладная на отпуск запасов на сторону</option>
+                <option value="7">Накладная на внутреннее перемещение запасов</option>
+                <option value="custom">Другое</option>
+            </select>
+        </div>
+        <input type="text" class="form-control" id="customValue" placeholder="None" name="{{ form.osnovamie.name }}">
+    </div>
+
+    <!-- Render other form fields as needed -->
+
+    <button class="btn btn-primary" type="submit">Создать</button>
+</form>

@@ -24,25 +24,25 @@
         </div>
     </div>
 
-    <form method="post" action="{% url 'main' %}">
+<form method="post" action="{% url 'main' %}">
         {% csrf_token %}
 
         <div class="row">
             <div class="col-md-4">
                 <div class="input-group">
                     <span class="input-group-text">Номер МП</span>
-                    <input type="text" aria-label="Номер" disabled class="form-control" value="{{ number_mp }}">
+                    <input type="text" aria-label="Номер" class="form-control" value="{{number_mp}}" for="{{ form.number_mp}}">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="input-group">
                     <span class="input-group-text">Наименование имущества</span>
-                    <input type="text" aria-label="Наименование" class="form-control">
+                    <input type="text" aria-label="Наименование" class="form-control" for="{{ form.name_si }}">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="input-group mb-3">
-                    <select class="form-select" aria-label="Default select example" id="values" onchange="updateInput()" >
+                    <select class="form-select" aria-label="Default select example" id="values" onchange="updateInput()">
                         <option selected>На право вывоза</option>
                         <option value="1">ТТН№</option>
                         <option value="2">АКТ приема передачи №</option>
@@ -54,38 +54,96 @@
                         <option value="custom">Другое</option>
                     </select>
                 </div>
-                <input type="text" class="form-control" id="customValue"  placeholder="None">
-       
+                <input type="text" class="form-control" id="customValue"  placeholder="None" >
             </div>
         </div>
+
         <div class="row">
           <div class="col-md-4">
             <div class="input-group">
-              <span class="input-group-text">Фамилия и Имя</span>
-              <input type="text" aria-label="First name" class="form-control">
-              <input type="text" aria-label="Last name" class="form-control">
+              <span class="input-group-text">Фамилия Имя</span>
+              <input type="text" aria-label="First name" class="form-control" id="{{ form.fio.id }}" name="{{ form.fio.name }}">
+              <input type="text" aria-label="Last name" class="form-control" id="{{ form.fio.id }}" name="{{ form.fio.name }}">
             </div>
           </div>
           <div class="col-md-4">
             <div class="input-group mb-3">
-              <select class="form-select" aria-label="Default select example" id="values_driver" onchange="updateInput_for_driver()" >
+              <select class="form-select" aria-label="Default select example" id="values_driver" onchange="updateInput_for_driver()" name="{{ form.vid_transfer.name }}" >
                   <option selected>Перевозчик</option>
                   <option value="1">ИП "Джакупов А.К."</option>
                   <option value="2">Avis</option>
                   <option value="custom">Другое</option>
               </select>
+            </div>
+                <input type="text" class="form-control" style="display: none;" id="driver"  placeholder="Другое" name="{{ form.vid_transfer.name }}">
           </div>
-          <input type="text" class="form-control" style="display: none;" id="driver"  placeholder="None">
-
-          
+          <div class="col-md-4">
+            <div class="input-group mb-3">
+            <select class="form-select" aria-label="Default select example" id="values_car" onchange="car()" name="{{ form.where.name }}" >
+                <option selected>Автомобиль</option>
+                <option value="1">Toyota Hilux"</option>
+                <option value="2">Avis</option>
+                <option value="3">Самовывоз</option>
+                <option value="custom">Другое</option>
+            </select>
+        </div>
+            <input type="text" class="form-control" style="display: none;" id="input_car"  placeholder="Другое" name="{{ form.where.name }}">
           </div>
         </div>
-    </form>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-text">Пропуск выдал (-а)</span>
+                    <input type="text" aria-label="Номер" class="form-control" value="Оразалиева Е." id="{{ form.owner.id }}" name="{{ form.owner.name }}">
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="input-group mb-3">
+                <select class="form-select" aria-label="Default select example" id="where_id" onchange="where()" name="{{ form.where.name }}" >
+                  <option selected>Куда</option>
+                  <option value="1">г. Караганда"</option>
+                  <option value="2">п.Бозшаколь</option>
+                  <option value="3">п.Шубарколь</option>
+                  <option value="4">г.Астана</option>
+                  <option value="5">г.Астана</option>
+                  <option value="6">г.Алматы</option>
+                  <option value="custom">Другое</option>
+              </select>
+            </div>
+              <input type="text" class="form-control" style="display: none;" id="input_where"  placeholder="Другое" name="{{ form.where.name }}">
+            </div>
+
+            <div class="col-md-4">
+                <div class="input-group mb-3">
+                    <select class="form-select" aria-label="Default select example" id="where_id" onchange="" name="{{ form.soglasoval.name }}">
+                        <option selected>Подписать у:</option>
+                        <option value="1">Кусаинов Арман"</option>
+                        <option value="2">Канафин Еламан</option>
+                        <option value="3">Нурахметов Серик</option>
+                        <option value="4">Пяк А.В.</option>
+                        <option value="5">Асеев Г.Г.</option>
+                        <option value="6">Смагулов Е.М.</option>
+                        <option value="7">Инютин С.А.</option>
+                    </select>
+                </div>
+            </div>  
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" type="submit">Создать</button>
+                  </div>
+            </div>
+        </div>
+</form>
 </div>
 
 <script>
     function updateInput() {
-      var select = document.getElementById("values");
+    var select = document.getElementById("values");
     var customValueInput = document.getElementById("customValue");
 
     var selectedOption = select.options[select.selectedIndex];
@@ -105,6 +163,26 @@ function updateInput_for_driver() {
             customValueInput.style.display = "none";
         }
     }
+
+function car() {
+    var select = document.getElementById("values_car");
+    var customValueInput = document.getElementById('input_car');
+    if (select.value === 'custom') {
+        customValueInput.style.display = 'inline-block';
+    } else {
+            customValueInput.style.display = 'none'
+    }
+}
+
+function where() {
+    var select = document.getElementById("where_id");
+    var customValueInput = document.getElementById('input_where');
+    if (select.value === 'custom') {
+        customValueInput.style.display = 'inline-block';
+    } else {
+            customValueInput.style.display = 'none'
+    }
+}
 </script>
 
 </body>
