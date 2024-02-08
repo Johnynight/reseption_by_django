@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-^v1xj!j)(%3igbr@hc=ln4o9ss7&x$)j%es#j6fsc^l7h5u4#1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['teqilkka.pythonanywhere.com']
+ALLOWED_HOSTS = ['teqilkka.pythonanywhere.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Almaty'
 
 USE_I18N = True
 

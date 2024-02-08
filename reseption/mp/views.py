@@ -1,3 +1,4 @@
+import pprint
 from datetime import datetime
 from .models import Material_pass
 from django.shortcuts import render
@@ -21,25 +22,36 @@ def main(request):
         if form.is_valid():
             number_mp = form.cleaned_data['number_mp']
             name_si = form.cleaned_data['name_si']
-            # osnovamie = form.cleaned_data['osnovamie']
-            # fio = form.cleaned_data['fio']
-            # vid_transfer = form.cleaned_data['vid_transfer']
-            # where = form.cleaned_data['where']
-            # owner = form.cleaned_data['owner']
-            # soglasoval = form.cleaned_data['soglasoval']
+            osnovamie = form.cleaned_data['osnovamie'] + form.cleaned_data['osnovamie_dop']
+            fio = form.cleaned_data['first_name'] + ' ' + form.cleaned_data['last_name']
+            vid_transfer = form.cleaned_data['vid_transfer']
+            car = form.cleaned_data['rrr']
+            where = form.cleaned_data['www']
+            owner = form.cleaned_data['owner']
+            soglasoval = form.cleaned_data['soglasoval']
             # / home / teqilkka / media / template_docx.docx
             document = DocxTemplate('reseption/mp/word_templates/template_docx.docx') # /home/teqilkka/media/template_docx.docx
+            if osnovamie == 'custom':
+                osnovamie = form.cleaned_data['osnovamie_dop']
+            if vid_transfer == 'custom':
+                vid_transfer = form.cleaned_data['vid_transfer_dop']
+            if where == 'custom':
+                where = form.cleaned_data['where_dop ']
+            if car == 'custom':
+                car = form.cleaned_data['rrr_2']
+
 
             context = {
                 'number': number_mp,
                 'name_si': name_si,
-                # 'osnovaie': osnovamie,
-                # 'name_osn': fio,
-                # 'time': time,
-                # 'car': vid_transfer,
-                # 'where': where,
-                # 'owner': owner,
-                # 'why': soglasoval
+                'osnovaie': osnovamie,
+                'name_osn': fio,
+                'time': time,
+                'car': car,
+                'gos_number' : vid_transfer,
+                'where': where,
+                'owner': owner,
+                'why': soglasoval
             }
 
             # new_entry = Material_pass(
@@ -68,7 +80,7 @@ def main(request):
                 content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
             response['Content-Disposition'] = f'attachment; filename={"name_si"}.docx'
             response.write(output.read())
-            print(context)
+            pprint.pprint(context)
             return response
             # return  print(context)
     else:

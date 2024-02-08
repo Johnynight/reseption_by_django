@@ -31,30 +31,30 @@
             <div class="col-md-4">
                 <div class="input-group">
                     <span class="input-group-text">Номер МП</span>
-                    <input type="text" aria-label="Номер" class="form-control" value="{{number_mp}}" for="{{ form.number_mp}}">
+                    <input type="text" aria-label="Номер" class="form-control" value="{{number_mp}}" {{ form.number_mp}}
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="input-group">
                     <span class="input-group-text">Наименование имущества</span>
-                    <input type="text" aria-label="Наименование" class="form-control" for="{{ form.name_si }}">
+                    <input type="text" aria-label="Наименование" class="form-control" {{ form.name_si }}
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="input-group mb-3">
-                    <select class="form-select" aria-label="Default select example" id="values" onchange="updateInput()">
+                    <select class="form-select" aria-label="Default select example" id="values" onchange="updateInput()" {{ form.osnovamie}}
                         <option selected>На право вывоза</option>
-                        <option value="1">ТТН№</option>
-                        <option value="2">АКТ приема передачи №</option>
-                        <option value="3">Avis накладная</option>
-                        <option value="4">ТОО Ki-Bay</option>
-                        <option value="5">ТОО КМФ Имсталькон</option>
-                        <option value="6">Накладная на отпуск запасов на сторону</option>
-                        <option value="7">Накладная на внутреннее перемещение запасов</option>
+                        <option value="ТТН№ ">ТТН№</option>
+                        <option value="АКТ приема передачи № ">АКТ приема передачи №</option>
+                        <option value="Avis накладная ">Avis накладная</option>
+                        <option value="ТОО Ki-Bay ">ТОО Ki-Bay</option>
+                        <option value="ТОО КМФ Имсталькон ">ТОО КМФ Имсталькон</option>
+                        <option value="Накладная на отпуск запасов на сторону ">Накладная на отпуск запасов на сторону</option>
+                        <option value="Накладная на внутреннее перемещение запасов ">Накладная на внутреннее перемещение запасов</option>
                         <option value="custom">Другое</option>
                     </select>
                 </div>
-                <input type="text" class="form-control" id="customValue"  placeholder="None" >
+                <input type="text" class="form-control" id="customValue"  placeholder="None" {{ form.osnovamie_dop }}
             </div>
         </div>
 
@@ -62,32 +62,32 @@
           <div class="col-md-4">
             <div class="input-group">
               <span class="input-group-text">Фамилия Имя</span>
-              <input type="text" aria-label="First name" class="form-control" id="{{ form.fio.id }}" name="{{ form.fio.name }}">
-              <input type="text" aria-label="Last name" class="form-control" id="{{ form.fio.id }}" name="{{ form.fio.name }}">
+              <input type="text"  aria-label="First name" class="form-control" {{ form.first_name }}
+              <input type="text" aria-label="Last name" class="form-control" {{ form.last_name }}
             </div>
           </div>
           <div class="col-md-4">
             <div class="input-group mb-3">
-              <select class="form-select" aria-label="Default select example" id="values_driver" onchange="updateInput_for_driver()" name="{{ form.vid_transfer.name }}" >
+              <select class="form-select" aria-label="Default select example" id="values_driver" onchange="updateInput_for_driver()" {{ form.vid_transfer }}
                   <option selected>Перевозчик</option>
-                  <option value="1">ИП "Джакупов А.К."</option>
-                  <option value="2">Avis</option>
+                  <option value="ИП Джакупов А.К.">ИП "Джакупов А.К."</option>
+                  <option value="Avis">Avis</option>
                   <option value="custom">Другое</option>
               </select>
             </div>
-                <input type="text" class="form-control" style="display: none;" id="driver"  placeholder="Другое" name="{{ form.vid_transfer.name }}">
+                <input type="text" class="form-control" style="display: none;" id="driver"  placeholder="Другое" {{ form.vid_transfer_dop}}
           </div>
           <div class="col-md-4">
             <div class="input-group mb-3">
-            <select class="form-select" aria-label="Default select example" id="values_car" onchange="car()" name="{{ form.where.name }}" >
+            <select class="form-select" aria-label="Default select example" id="values_car" onchange="car()" {{ form.rrr }}
                 <option selected>Автомобиль</option>
-                <option value="1">Toyota Hilux"</option>
-                <option value="2">Avis</option>
-                <option value="3">Самовывоз</option>
+                <option value="Toyota Hilux">Toyota Hilux"</option>
+                <option value="Avis">Avis</option>
+                <option value="Самовывоз">Самовывоз</option>
                 <option value="custom">Другое</option>
             </select>
         </div>
-            <input type="text" class="form-control" style="display: none;" id="input_car"  placeholder="Другое" name="{{ form.where.name }}">
+            <input type="text" class="form-control" style="display: none;" id="input_car"  placeholder="Другое" {{ form.rrr_2 }}>
           </div>
         </div>
 
@@ -95,37 +95,36 @@
             <div class="col-md-4">
                 <div class="input-group">
                     <span class="input-group-text">Пропуск выдал (-а)</span>
-                    <input type="text" aria-label="Номер" class="form-control" value="Оразалиева Е." id="{{ form.owner.id }}" name="{{ form.owner.name }}">
+                    <input type="text" aria-label="Номер" class="form-control" value="Оразалиева Е." id="{{ form.owner.id }}" {{ form.owner }}
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="input-group mb-3">
-                <select class="form-select" aria-label="Default select example" id="where_id" onchange="where()" name="{{ form.where.name }}" >
+                <select class="form-select" aria-label="Default select example"  {{ form.www }}
                   <option selected>Куда</option>
-                  <option value="1">г. Караганда"</option>
-                  <option value="2">п.Бозшаколь</option>
-                  <option value="3">п.Шубарколь</option>
-                  <option value="4">г.Астана</option>
-                  <option value="5">г.Астана</option>
-                  <option value="6">г.Алматы</option>
+                  <option value="г. Караганда">г. Караганда"</option>
+                  <option value="п.Бозшаколь">п.Бозшаколь</option>
+                  <option value="п.Шубарколь">п.Шубарколь</option>
+                  <option value="г.Астана">г.Астана</option>
+                  <option value="г.Астана">г.Астана</option>
+                  <option value="г.Алматы">г.Алматы</option>
                   <option value="custom">Другое</option>
-              </select>
+                </select>
             </div>
-              <input type="text" class="form-control" style="display: none;" id="input_where"  placeholder="Другое" name="{{ form.where.name }}">
+              <input type="text" class="form-control" style="display: none;" id="input_where"  placeholder="Другое" name="{{ form.where.name }}" {{ form.where_dop }}
             </div>
 
             <div class="col-md-4">
                 <div class="input-group mb-3">
-                    <select class="form-select" aria-label="Default select example" id="where_id" onchange="" name="{{ form.soglasoval.name }}">
+                    <select class="form-select" aria-label="Default select example" id="where_id"  {{ form.soglasoval }}
                         <option selected>Подписать у:</option>
-                        <option value="1">Кусаинов Арман"</option>
-                        <option value="2">Канафин Еламан</option>
-                        <option value="3">Нурахметов Серик</option>
-                        <option value="4">Пяк А.В.</option>
-                        <option value="5">Асеев Г.Г.</option>
-                        <option value="6">Смагулов Е.М.</option>
-                        <option value="7">Инютин С.А.</option>
+                        <option value="Кусаинов Арман">Кусаинов Арман"</option>
+                        <option value="Канафин Еламан">Канафин Еламан</option>
+                        <option value="Нурахметов Серик">Нурахметов Серик</option>
+                        <option value="Асеев Г.Г.">Асеев Г.Г.</option>
+                        <option value="Смагулов Е.М.">Смагулов Е.М.</option>
+                        <option value="Инютин С.А.">Инютин С.А.</option>
                     </select>
                 </div>
             </div>  
