@@ -30,7 +30,7 @@ def main(request):
             owner = form.cleaned_data['owner']
             soglasoval = form.cleaned_data['soglasoval']
             # / home / teqilkka / media / template_docx.docx
-            document = DocxTemplate('reseption/mp/word_templates/template_docx.docx') # /home/teqilkka/media/template_docx.docx
+            document = DocxTemplate('/home/teqilkka/media/template_docx.docx') # /home/teqilkka/media/template_docx.docx
             if osnovamie == 'custom':
                 osnovamie = form.cleaned_data['osnovamie_dop']
             if vid_transfer == 'custom':
