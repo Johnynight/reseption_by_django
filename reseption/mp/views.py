@@ -54,19 +54,6 @@ def main(request):
                 'why': soglasoval
             }
 
-            # new_entry = Material_pass(
-            #     serial_number = number_mp,
-            #     name_property = name_si,
-            #     reason = osnovamie,
-            #     time_registration = timezone.now(),
-            #     type_transport = vid_transfer,
-            #     where_from = where,
-            #     issued_pass = owner,
-            #     today_data = timezone.now(),
-            #     approved = soglasoval
-            # )
-            #
-            # new_entry.save()
 
             document.render(context)
 
@@ -78,9 +65,23 @@ def main(request):
             # Отправляем файл в загрузку
             response = HttpResponse(
                 content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
-            response['Content-Disposition'] = f'attachment; filename={"name_si"}.docx'
+            response['Content-Disposition'] = f'attachment; filename="Material_pass_{number_mp}".docx'
             response.write(output.read())
             pprint.pprint(context)
+            new_entry = Material_pass(
+                serial_number=number_mp,
+                name_property=name_si,
+                reason=osnovamie,
+                time_registration=timezone.now(),
+                type_transport=vid_transfer,
+                where_from=where,
+                issued_pass=owner,
+                today_data=timezone.now(),
+                approved=soglasoval
+            )
+
+            new_entry.save()
+
             return response
             # return  print(context)
     else:
