@@ -9,10 +9,8 @@ from docxtpl import DocxTemplate
 import io
 from django.utils import timezone
 
-
 data = datetime.now().strftime("%d.%m.%Y")
 time = datetime.today().time().strftime("%H:%M")
-
 
 
 def main(request):
@@ -30,7 +28,8 @@ def main(request):
             owner = form.cleaned_data['owner']
             soglasoval = form.cleaned_data['soglasoval']
             # / home / teqilkka / media / template_docx.docx
-            document = DocxTemplate('/home/teqilkka/media/template_docx.docx') # /home/teqilkka/media/template_docx.docx
+            document = DocxTemplate(
+                'reseption/mp/word_templates/template_docx.docx')  # /home/teqilkka/media/template_docx.docx
             if osnovamie == 'custom':
                 osnovamie = form.cleaned_data['osnovamie_dop']
             if vid_transfer == 'custom':
@@ -40,7 +39,6 @@ def main(request):
             if car == 'custom':
                 car = form.cleaned_data['rrr_2']
 
-
             context = {
                 'number': number_mp,
                 'name_si': name_si,
@@ -48,12 +46,11 @@ def main(request):
                 'name_osn': fio,
                 'time': time,
                 'car': car,
-                'gos_number' : vid_transfer,
+                'gos_number': vid_transfer,
                 'where': where,
                 'owner': owner,
                 'why': soglasoval
             }
-
 
             document.render(context)
 
@@ -71,10 +68,11 @@ def main(request):
             new_entry = Material_pass(
                 serial_number=number_mp,
                 name_property=name_si,
+                owner_reason=fio,
                 reason=osnovamie,
                 time_registration=timezone.now(),
                 type_transport=vid_transfer,
-                where_from=where,
+                where=where,
                 issued_pass=owner,
                 today_data=timezone.now(),
                 approved=soglasoval
@@ -83,14 +81,13 @@ def main(request):
             new_entry.save()
 
             return response
-            # return  print(context)
     else:
         print('Error')
 
         form = MyForm()
 
     return render(request, 'mp/sample.html', {'form': form,
-                                            'number_mp': number_mp.serial_number + 1})
+                                              'number_mp': number_mp.serial_number + 1})
 
 
 def form2(request):

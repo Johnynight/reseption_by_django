@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <h2>Создание материального пропуска</h2>
+            <h2>Материальный пропуск</h2>
         </div>
     </div>
 
@@ -101,7 +101,7 @@
 
             <div class="col-md-4">
                 <div class="input-group mb-3">
-                <select class="form-select" aria-label="Default select example"  {{ form.www }}
+                <select class="form-select" aria-label="Default select example"   {{ form.www }}
                   <option selected>Куда</option>
                   <option value="г. Караганда">г. Караганда"</option>
                   <option value="п.Бозшаколь">п.Бозшаколь</option>
@@ -119,12 +119,12 @@
                 <div class="input-group mb-3">
                     <select class="form-select" aria-label="Default select example" id="where_id"  {{ form.soglasoval }}
                         <option selected>Подписать у:</option>
-                        <option value="Кусаинов Арман">Кусаинов Арман"</option>
-                        <option value="Канафин Еламан">Канафин Еламан</option>
-                        <option value="Нурахметов Серик">Нурахметов Серик</option>
-                        <option value="Асеев Г.Г.">Асеев Г.Г.</option>
-                        <option value="Смагулов Е.М.">Смагулов Е.М.</option>
-                        <option value="Инютин С.А.">Инютин С.А.</option>
+                        <option value="Главный инженер: Кусаинов Арман">Кусаинов Арман</option>
+                        <option value="Зам. директора по производству: Канафин Еламан">Канафин Еламан</option>
+                        <option value="Директор Филиала: Нурахметов Серик">Нурахметов Серик</option>
+                        <option value="Начальник ОУК: Асеев Григорий">Асеев Григорий</option>
+                        <option value="Начальник ПДО: Смагулов Ернур">Смагулов Ернур</option>
+                        <option value="Начальник (вспомогательного участка): Инютин Сергей">Инютин Сергей</option>
                     </select>
                 </div>
             </div>  
@@ -151,7 +151,7 @@
     customValueInput.setAttribute('aria-placeholder', selectedOptionText);
     // или
     customValueInput.placeholder = selectedOptionText;
-}
+    }
 
 function updateInput_for_driver() {
   var select = document.getElementById("values_driver");
