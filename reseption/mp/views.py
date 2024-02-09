@@ -44,7 +44,7 @@ def main(request):
                 'name_si': name_si,
                 'osnovaie': osnovamie,
                 'name_osn': fio,
-                'time': time,
+                'time': datetime.today().time().strftime("%H:%M"),
                 'car': car,
                 'gos_number': vid_transfer,
                 'where': where,
