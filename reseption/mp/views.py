@@ -44,7 +44,7 @@ def main(request):
 
             context = {
                 'number': number_mp,
-                'name_si': name_si,
+                'item': name_si,
                 'osnovaie': osnovamie,
                 'name_osn': fio,
                 'name_driver': name_driver,

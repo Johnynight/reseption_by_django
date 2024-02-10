@@ -24,71 +24,73 @@
         </div>
     </div>
 
-<form method="post" action="{% url 'main' %}">
+    <form method="post" action="{% url 'main' %}">
         {% csrf_token %}
 
         <div class="row">
             <div class="col-md-4">
                 <div class="input-group">
                     <span class="input-group-text">Номер МП</span>
-                    <input type="text" aria-label="Номер" readonly  class="form-control" value="{{number_mp}}" {{ form.number_mp}}
+                    <input type="text" aria-label="Номер" readonly class="form-control" value="{{ number_mp }}" {{ form.number_mp }}
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="input-group">
                     <span class="input-group-text">Наименование имущества</span>
-                    <input type="text" aria-label="Наименование" class="form-control" {{ form.item }}
+                      <textarea class="form-control" id="textAreaExample1" rows="4" {{ form.item }}</textarea>
+
+<!--                    <input type="text"  aria-label="Наименование" class="form-control" value="" {{ form.item }}-->
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="input-group mb-3">
-                    <select class="form-select" aria-label="Default select example" id="values" onchange="updateInput()" {{ form.osnovamie}}
+                    <select class="form-select" aria-label="Default select example" id="values" onchange="updateInput()" {{ form.osnovamie }}>
                         <option selected>На право вывоза</option>
                         <option value="ТТН №">ТТН№</option>
-                        <option value="АКТ приема передачи № ">АКТ приема передачи №</option>
-                        <option value="Avis накладная ">Avis накладная</option>
-                        <option value="ТОО Ki-Bay ">ТОО Ki-Bay</option>
-                        <option value="ТОО КМФ Имсталькон ">ТОО КМФ Имсталькон</option>
-                        <option value="Накладная на отпуск запасов на сторону ">Накладная на отпуск запасов на сторону</option>
-                        <option value="Накладная на внутреннее перемещение запасов ">Накладная на внутреннее перемещение запасов</option>
+                        <option value="АКТ приема передачи №">АКТ приема передачи №</option>
+                        <option value="Avis накладная">Avis накладная</option>
+                        <option value="ТОО Ki-Bay">ТОО Ki-Bay</option>
+                        <option value="ТОО КМФ Имсталькон">ТОО КМФ Имсталькон</option>
+                        <option value="Накладная на отпуск запасов на сторону">Накладная на отпуск запасов на сторону</option>
+                        <option value="Накладная на внутреннее перемещение запасов">Накладная на внутреннее перемещение запасов</option>
                         <option value="custom">Другое</option>
                     </select>
                 </div>
-                <input type="text" class="form-control" id="customValue"  placeholder="" {{ form.osnovamie_dop }}
+                <input type="text" class="form-control" id="customValue" placeholder="" {{ form.osnovamie_dop }} &nbsp;
             </div>
         </div>
 
         <div class="row">
-          <div class="col-md-4">
-            <div class="input-group">
-              <span class="input-group-text">Фамилия Имя</span>
-              <input type="text"  aria-label="First name" class="form-control" {{ form.first_name }}
-              <input type="text" aria-label="Last name" class="form-control" {{ form.last_name }}
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-text">Фамилия Имя</span>
+                    <input type="text" aria-label="First name" class="form-control" {{ form.first_name }}
+                    <input type="text" aria-label="Last name" class="form-control" {{ form.last_name }}
+                </div>
             </div>
-          </div>
-          <div class="col-md-4">
-            <div class="input-group mb-3">
-              <select class="form-select" aria-label="Default select example" id="values_driver" onchange="updateInput_for_driver()" {{ form.car }}
-                  <option selected>Перевозчик</option>
-                  <option value="ИП Джакупов А.К.">ИП "Джакупов А.К."</option>
-                  <option value="Avis">Avis</option>
-                  <option value="custom">Другое</option>
-              </select>
+            <div class="col-md-4">
+                <div class="input-group mb-3">
+                    <select class="form-select" aria-label="Default select example" id="values_driver" onchange="updateInput_for_driver()" {{ form.car }}
+                        <option selected>Перевозчик</option>
+                        <option value="ИП Джакупов А.К.">ИП "Джакупов А.К."</option>
+                        <option value="Avis">Avis</option>
+                        <option value="custom">Другое</option>
+                    </select>
+                </div>
+                <input type="text" class="form-control" style="display: none;" id="driver" placeholder="Другое" {{ form.car_dop }} &nbsp;
             </div>
-                <input type="text" class="form-control" style="display: none;" id="driver"  placeholder="Другое" {{ form.car_dop }}
-          </div>
-          <div class="col-md-4">
-            <div class="input-group mb-3">
-            <select class="form-select" aria-label="Default select example" id="values_car" onchange="car()" {{ form.name_driver }}
-                <option selected>ФИО</option>
-                <option value="Toyota Hilux">Toyota Hilux"</option>
-                <option value="Avis">Avis</option>
-                <option value="Самовывоз">Самовывоз</option>
-                <option value="custom">Другое</option>
-            </select>
-        </div>
-            <input type="text" class="form-control" style="display: none;" id="input_car"  placeholder="Другое" {{ form.name_drop }}
-          </div>
+            <div class="col-md-4">
+                <div class="input-group mb-3">
+                    <select class="form-select" aria-label="Default select example" id="values_car" onchange="car()" {{ form.name_driver }}
+                        <option selected>Вид транспорта</option>
+                        <option value="Toyota Hilux">Toyota Hilux</option>
+                        <option value="Avis">Avis</option>
+                        <option value="Самовывоз">Самовывоз</option>
+                        <option value="custom">Другое</option>
+                    </select>
+                </div>
+                <input type="text" class="form-control" style="display: none;" id="input_car" placeholder="Другое" {{ form.name_drop }}>
+            </div>
         </div>
 
         <div class="row">
@@ -98,25 +100,23 @@
                     <input type="text" aria-label="Номер" class="form-control" value="Оразалиева Е." {{ form.owner }}
                 </div>
             </div>
-
             <div class="col-md-4">
                 <div class="input-group mb-3">
-                <select class="form-select" aria-label="Default select example" id="where_value" onchange="where()"   {{ form.where }}
-                  <option selected>Куда</option>
-                  <option value="г. Караганда">г.Караганда</option>
-                  <option value="п.Бозшаколь">п.Бозшаколь</option>
-                  <option value="п.Шубарколь">п.Шубарколь</option>
-                  <option value="г.Астана">г.Астана</option>
-                  <option value="г.Алматы">г.Алматы</option>
-                  <option value="custom">Другое</option>
-                </select>
+                    <select class="form-select" aria-label="Default select example" id="where_value" onchange="where()" {{ form.where }}
+                        <option selected>Куда</option>
+                        <option value="г. Караганда">г.Караганда</option>
+                        <option value="п.Бозшаколь">п.Бозшаколь</option>
+                        <option value="п.Шубарколь">п.Шубарколь</option>
+                        <option value="г.Астана">г.Астана</option>
+                        <option value="г.Алматы">г.Алматы</option>
+                        <option value="custom">Другое</option>
+                    </select>
+                </div>
+                <input type="text" class="form-control" style="display: none;" id="input_where" placeholder="Другое" {{ form.where_dop }}
             </div>
-              <input type="text" class="form-control" style="display: none;" id="input_where"  placeholder="Другое"  {{ form.where_dop }}
-            </div>
-
             <div class="col-md-4">
                 <div class="input-group mb-3">
-                    <select class="form-select" aria-label="Default select example" id="where_id"  {{ form.soglasoval }}
+                    <select class="form-select" aria-label="Default select example" id="where_id" {{ form.soglasoval }}>
                         <option selected>Подписать у:</option>
                         <option value="Главный инженер: Кусаинов Арман">Кусаинов Арман</option>
                         <option value="Зам. директора по производству: Канафин Еламан">Канафин Еламан</option>
@@ -125,42 +125,42 @@
                         <option value="Начальник ПДО: Смагулов Ернур">Смагулов Ернур</option>
                         <option value="Нач. (вспом. участка): Инютин Сергей">Инютин Сергей</option>
                         <option value="Системный администратор: Пяк А.В.">Пяк А.В.</option>
-                        <option value="Нач. скл. хоз.">Тагиров З.Т.</option>
+                        <option value="Нач. скл. хоз.: Тагиров З.Т.">Тагиров З.Т.</option>
                         <option value="Зав. складом: Тутаева З.Ф.">Тутаева З.Ф.</option>
                         <option value="Старший кладовщик: Распаркин В.А">Распаркин В.А</option>
                         <option value="Старший кладовщик: Бугибаев Р.М.">Бугибаев Р.М.</option>
                         <option value="Старший кладовщик: Елатев Ж.Д.">Елтаев Ж.Д.</option>
                     </select>
                 </div>
-            </div>  
+            </div>
         </div>
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
                 <div class="d-grid gap-2">
-                    <button class="btn btn-primary"  type="submit">Создать</button>
-                  </div>
+                    <button class="btn btn-primary" type="submit">Создать</button>
+                </div>
             </div>
         </div>
-</form>
+    </form>
 </div>
 
 <script>
     function updateInput() {
-    var select = document.getElementById("values");
-    var customValueInput = document.getElementById("customValue");
+        var select = document.getElementById("values");
+        var customValueInput = document.getElementById("customValue");
 
-    var selectedOption = select.options[select.selectedIndex];
-    var selectedOptionText = selectedOption.innerText;
+        var selectedOption = select.options[select.selectedIndex];
+        var selectedOptionText = selectedOption.innerText;
 
-    customValueInput.setAttribute('aria-placeholder', selectedOptionText);
-    // или
-    customValueInput.placeholder = selectedOptionText;
+        customValueInput.setAttribute('aria-placeholder', selectedOptionText);
+        // или
+        customValueInput.placeholder = selectedOptionText;
     }
 
-function updateInput_for_driver() {
-  var select = document.getElementById("values_driver");
-  var customValueInput = document.getElementById("driver");
+    function updateInput_for_driver() {
+        var select = document.getElementById("values_driver");
+        var customValueInput = document.getElementById("driver");
         if (select.value === "custom") {
             customValueInput.style.display = "inline-block";
         } else {
@@ -168,28 +168,25 @@ function updateInput_for_driver() {
         }
     }
 
-function car() {
-    var select = document.getElementById("values_car");
-    var customValueInput = document.getElementById('input_car');
-    if (select.value === 'custom') {
-        customValueInput.style.display = 'inline-block';
-    } else {
-            customValueInput.style.display = 'none'
+    function car() {
+        var select = document.getElementById("values_car");
+        var customValueInput = document.getElementById('input_car');
+        if (select.value === 'custom') {
+            customValueInput.style.display = 'inline-block';
+        } else {
+            customValueInput.style.display = 'none';
+        }
     }
-}
 
-function where() {
-    var select = document.getElementById("where_value");
-    var customValueInput = document.getElementById('input_where');
-    if (select.value === 'custom') {
-        customValueInput.style.display = 'inline-block';
-    } else {
-            customValueInput.style.display = 'none'
+    function where() {
+        var select = document.getElementById("where_value");
+        var customValueInput = document.getElementById('input_where');
+        if (select.value === 'custom') {
+            customValueInput.style.display = 'inline-block';
+        } else {
+            customValueInput.style.display = 'none';
+        }
     }
-}
-
-
-
 </script>
 
 </body>
