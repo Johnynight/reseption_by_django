@@ -35,7 +35,7 @@ def main(request):
             if vid_transfer == 'custom':
                 vid_transfer = form.cleaned_data['vid_transfer_dop']
             if where == 'custom':
-                where = form.cleaned_data['where_dop ']
+                where = form.cleaned_data['where_dop']
             if car == 'custom':
                 car = form.cleaned_data['rrr_2']
             if where == 'custom':
