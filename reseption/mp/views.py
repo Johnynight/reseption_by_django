@@ -19,12 +19,13 @@ def main(request):
         form = MyForm(request.POST)
         if form.is_valid():
             number_mp = form.cleaned_data['number_mp']
-            name_si = form.cleaned_data['name_si']
+            name_si = form.cleaned_data['item']
             osnovamie = form.cleaned_data['osnovamie'] + form.cleaned_data['osnovamie_dop']
             fio = form.cleaned_data['first_name'] + ' ' + form.cleaned_data['last_name']
-            vid_transfer = form.cleaned_data['vid_transfer']
-            car = form.cleaned_data['rrr']
-            where = form.cleaned_data['www']
+            vid_transfer = form.cleaned_data['car']
+            name_driver = form.cleaned_data['name_driver']
+            car = form.cleaned_data['car']
+            where = form.cleaned_data['where']
             owner = form.cleaned_data['owner']
             soglasoval = form.cleaned_data['soglasoval']
             # / home / teqilkka / media / template_docx.docx
@@ -33,11 +34,11 @@ def main(request):
             if osnovamie == 'custom':
                 osnovamie = form.cleaned_data['osnovamie_dop']
             if vid_transfer == 'custom':
-                vid_transfer = form.cleaned_data['vid_transfer_dop']
+                vid_transfer = form.cleaned_data['car_dop']
             if where == 'custom':
                 where = form.cleaned_data['where_dop']
             if car == 'custom':
-                car = form.cleaned_data['rrr_2']
+                car = form.cleaned_data['car_dop']
             if where == 'custom':
                 where = form.cleaned_data['where_dop']
 
@@ -46,6 +47,7 @@ def main(request):
                 'name_si': name_si,
                 'osnovaie': osnovamie,
                 'name_osn': fio,
+                'name_driver': name_driver,
                 'time': datetime.today().time().strftime("%H:%M"),
                 'car': car,
                 'gos_number': vid_transfer,

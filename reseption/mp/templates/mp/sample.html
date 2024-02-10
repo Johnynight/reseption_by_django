@@ -37,14 +37,14 @@
             <div class="col-md-4">
                 <div class="input-group">
                     <span class="input-group-text">Наименование имущества</span>
-                    <input type="text" aria-label="Наименование" class="form-control" {{ form.name_si }}
+                    <input type="text" aria-label="Наименование" class="form-control" {{ form.item }}
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="input-group mb-3">
                     <select class="form-select" aria-label="Default select example" id="values" onchange="updateInput()" {{ form.osnovamie}}
                         <option selected>На право вывоза</option>
-                        <option value="ТТН№ ">ТТН№</option>
+                        <option value="ТТН №">ТТН№</option>
                         <option value="АКТ приема передачи № ">АКТ приема передачи №</option>
                         <option value="Avis накладная ">Avis накладная</option>
                         <option value="ТОО Ki-Bay ">ТОО Ki-Bay</option>
@@ -68,26 +68,26 @@
           </div>
           <div class="col-md-4">
             <div class="input-group mb-3">
-              <select class="form-select" aria-label="Default select example" id="values_driver" onchange="updateInput_for_driver()" {{ form.vid_transfer }}
+              <select class="form-select" aria-label="Default select example" id="values_driver" onchange="updateInput_for_driver()" {{ form.car }}
                   <option selected>Перевозчик</option>
                   <option value="ИП Джакупов А.К.">ИП "Джакупов А.К."</option>
                   <option value="Avis">Avis</option>
                   <option value="custom">Другое</option>
               </select>
             </div>
-                <input type="text" class="form-control" style="display: none;" id="driver"  placeholder="Другое" {{ form.vid_transfer_dop}}
+                <input type="text" class="form-control" style="display: none;" id="driver"  placeholder="Другое" {{ form.car_dop }}
           </div>
           <div class="col-md-4">
             <div class="input-group mb-3">
-            <select class="form-select" aria-label="Default select example" id="values_car" onchange="car()" {{ form.rrr }}
-                <option selected>Автомобиль</option>
+            <select class="form-select" aria-label="Default select example" id="values_car" onchange="car()" {{ form.name_driver }}
+                <option selected>ФИО</option>
                 <option value="Toyota Hilux">Toyota Hilux"</option>
                 <option value="Avis">Avis</option>
                 <option value="Самовывоз">Самовывоз</option>
                 <option value="custom">Другое</option>
             </select>
         </div>
-            <input type="text" class="form-control" style="display: none;" id="input_car"  placeholder="Другое" {{ form.rrr_2 }}
+            <input type="text" class="form-control" style="display: none;" id="input_car"  placeholder="Другое" {{ form.name_drop }}
           </div>
         </div>
 
@@ -95,18 +95,17 @@
             <div class="col-md-4">
                 <div class="input-group">
                     <span class="input-group-text">Пропуск выдал (-а)</span>
-                    <input type="text" aria-label="Номер" class="form-control" value="Оразалиева Е." id="{{ form.owner.id }}" {{ form.owner }}
+                    <input type="text" aria-label="Номер" class="form-control" value="Оразалиева Е." {{ form.owner }}
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="input-group mb-3">
-                <select class="form-select" aria-label="Default select example" id="where_value" onchange="where()"   {{ form.www }}
+                <select class="form-select" aria-label="Default select example" id="where_value" onchange="where()"   {{ form.where }}
                   <option selected>Куда</option>
                   <option value="г. Караганда">г.Караганда</option>
                   <option value="п.Бозшаколь">п.Бозшаколь</option>
                   <option value="п.Шубарколь">п.Шубарколь</option>
-                  <option value="г.Астана">г.Астана</option>
                   <option value="г.Астана">г.Астана</option>
                   <option value="г.Алматы">г.Алматы</option>
                   <option value="custom">Другое</option>
@@ -124,7 +123,7 @@
                         <option value="Директор Филиала: Нурахметов Серик">Нурахметов Серик</option>
                         <option value="Начальник ОУК: Асеев Григорий">Асеев Григорий</option>
                         <option value="Начальник ПДО: Смагулов Ернур">Смагулов Ернур</option>
-                        <option value="Начальник (вспомогательного участка): Инютин Сергей">Инютин Сергей</option>
+                        <option value="Нач. (вспом. участка): Инютин Сергей">Инютин Сергей</option>
                         <option value="Системный администратор: Пяк А.В.">Пяк А.В.</option>
                         <option value="Нач. скл. хоз.">Тагиров З.Т.</option>
                         <option value="Зав. складом: Тутаева З.Ф.">Тутаева З.Ф.</option>
