@@ -38,6 +38,8 @@ def main(request):
                 where = form.cleaned_data['where_dop ']
             if car == 'custom':
                 car = form.cleaned_data['rrr_2']
+            if where == 'custom':
+                where = form.cleaned_data['where_dop']
 
             context = {
                 'number': number_mp,

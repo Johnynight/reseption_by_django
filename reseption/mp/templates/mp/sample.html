@@ -101,9 +101,9 @@
 
             <div class="col-md-4">
                 <div class="input-group mb-3">
-                <select class="form-select" aria-label="Default select example"   {{ form.www }}
+                <select class="form-select" aria-label="Default select example" id="where_value" onchange="where()"   {{ form.www }}
                   <option selected>Куда</option>
-                  <option value="г. Караганда">г. Караганда"</option>
+                  <option value="г. Караганда">г.Караганда</option>
                   <option value="п.Бозшаколь">п.Бозшаколь</option>
                   <option value="п.Шубарколь">п.Шубарколь</option>
                   <option value="г.Астана">г.Астана</option>
@@ -112,7 +112,7 @@
                   <option value="custom">Другое</option>
                 </select>
             </div>
-              <input type="text" class="form-control" style="display: none;" id="input_where"  placeholder="Другое" name="{{ form.where.name }}" {{ form.where_dop }}
+              <input type="text" class="form-control" style="display: none;" id="input_where"  placeholder="Другое"  {{ form.where_dop }}
             </div>
 
             <div class="col-md-4">
@@ -125,6 +125,12 @@
                         <option value="Начальник ОУК: Асеев Григорий">Асеев Григорий</option>
                         <option value="Начальник ПДО: Смагулов Ернур">Смагулов Ернур</option>
                         <option value="Начальник (вспомогательного участка): Инютин Сергей">Инютин Сергей</option>
+                        <option value="Системный администратор: Пяк А.В.">Пяк А.В.</option>
+                        <option value="Начальник складского хозяйства (территориального)">Тагиров З.Т.</option>
+                        <option value="Заведующий складом: Тутаева З.Ф.">Тутаева З.Ф.</option>
+                        <option value="Старший кладовщик: Распаркин В.А">Распаркин В.А</option>
+                        <option value="Старший кладовщик: Бугибаев Р.М.">Бугибаев Р.М.</option>
+                        <option value="Старший кладовщик: Елатев Ж.Д.">Елатев Ж.Д.</option>
                     </select>
                 </div>
             </div>  
@@ -133,7 +139,7 @@
             <div class="col-md-4"></div>
             <div class="col-md-4">
                 <div class="d-grid gap-2">
-                    <button class="btn btn-primary" type="submit">Создать</button>
+                    <button class="btn btn-primary"  type="submit">Создать</button>
                   </div>
             </div>
         </div>
@@ -174,7 +180,7 @@ function car() {
 }
 
 function where() {
-    var select = document.getElementById("where_id");
+    var select = document.getElementById("where_value");
     var customValueInput = document.getElementById('input_where');
     if (select.value === 'custom') {
         customValueInput.style.display = 'inline-block';
@@ -182,6 +188,9 @@ function where() {
             customValueInput.style.display = 'none'
     }
 }
+
+
+
 </script>
 
 </body>
