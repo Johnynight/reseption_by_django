@@ -18,9 +18,9 @@ def main(request):
     if request.method == "POST":
         form = MyForm(request.POST)
         if form.is_valid():
-            number_mp = form.cleaned_data['number_mp']
+            number_mp = number_mp.serial_number + 1
             name_si = form.cleaned_data['item']
-            osnovamie = form.cleaned_data['osnovamie'] + form.cleaned_data['osnovamie_dop']
+            osnovamie = form.cleaned_data['osnovamie'] + ' ' +  form.cleaned_data['osnovamie_dop']
             fio = form.cleaned_data['first_name'] + ' ' + form.cleaned_data['last_name']
             vid_transfer = form.cleaned_data['car']
             name_driver = form.cleaned_data['name_driver']
@@ -31,7 +31,7 @@ def main(request):
             # / home / teqilkka / media / template_docx.docx
             document = DocxTemplate(
                 '/home/teqilkka/media/template_docx.docx')  # /home/teqilkka/media/template_docx.docx
-            if osnovamie == 'custom':
+            if form.cleaned_data['osnovamie'] == 'custom':
                 osnovamie = form.cleaned_data['osnovamie_dop']
             if vid_transfer == 'custom':
                 vid_transfer = form.cleaned_data['car_dop']
@@ -41,6 +41,8 @@ def main(request):
                 car = form.cleaned_data['car_dop']
             if where == 'custom':
                 where = form.cleaned_data['where_dop']
+            if name_driver == 'custom':
+                name_driver = form.cleaned_data['name_driver_dop']
 
             context = {
                 'number': number_mp,
@@ -86,8 +88,6 @@ def main(request):
 
             return response
     else:
-        print('Error')
-
         form = MyForm()
 
     return render(request, 'mp/sample.html', {'form': form,

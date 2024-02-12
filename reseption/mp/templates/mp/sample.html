@@ -81,7 +81,7 @@
             </div>
             <div class="col-md-4">
                 <div class="input-group mb-3">
-                    <select class="form-select" aria-label="Default select example" id="values_car" onchange="car()" {{ form.name_driver }}
+                    <select class="form-select" aria-label="Default select example" id="values_car" onchange="updateCar()" {{ form.name_driver }}
                         <option selected>Вид транспорта</option>
                         <option value="Toyota Hilux">Toyota Hilux</option>
                         <option value="Avis">Avis</option>
@@ -89,7 +89,8 @@
                         <option value="custom">Другое</option>
                     </select>
                 </div>
-                <input type="text" class="form-control" style="display: none;" id="input_car" placeholder="Другое" {{ form.name_drop }}>
+                <input type="text" class="form-control" style="display: none;" id="input_car" placeholder="Другое" {{ form.name_driver_dop }}
+                &nbsp;
             </div>
         </div>
 
@@ -102,7 +103,7 @@
             </div>
             <div class="col-md-4">
                 <div class="input-group mb-3">
-                    <select class="form-select" aria-label="Default select example" id="where_value" onchange="where()" {{ form.where }}
+                    <select class="form-select" aria-label="Default select example" id="where_value" onchange="updateQhere()" {{ form.where }}
                         <option selected>Куда</option>
                         <option value="г. Караганда">г.Караганда</option>
                         <option value="п.Бозшаколь">п.Бозшаколь</option>
@@ -112,7 +113,7 @@
                         <option value="custom">Другое</option>
                     </select>
                 </div>
-                <input type="text" class="form-control" style="display: none;" id="input_where" placeholder="Другое" {{ form.where_dop }}
+                <input type="text" class="form-control" style="display: none;" id="input_where" placeholder="Другое" {{ form.where_dop }} &nbsp;
             </div>
             <div class="col-md-4">
                 <div class="input-group mb-3">
@@ -168,7 +169,7 @@
         }
     }
 
-    function car() {
+    function updateCar() {
         var select = document.getElementById("values_car");
         var customValueInput = document.getElementById('input_car');
         if (select.value === 'custom') {
@@ -178,7 +179,7 @@
         }
     }
 
-    function where() {
+    function updateQhere() {
         var select = document.getElementById("where_value");
         var customValueInput = document.getElementById('input_where');
         if (select.value === 'custom') {
