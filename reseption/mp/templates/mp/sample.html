@@ -176,10 +176,13 @@
         var customValueInput = document.getElementById('input_car');
         if (select.value === 'custom') {
             customValueInput.style.display = 'inline-block';
-        }else if (select.value === 'Toyota Hilux') {
+        }
+        else if (select.value === 'Toyota Hilux') {
         customGos_number.style.display = 'inline-block';
-        } else {
+        }
+        else {
             customValueInput.style.display = 'none';
+            customGos_number.style.display = 'none';
         }
     }
 
