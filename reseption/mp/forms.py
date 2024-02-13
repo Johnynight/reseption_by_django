@@ -21,6 +21,7 @@ class MyForm(forms.Form):
     # time_created = forms.DateTimeField(label='Время оформления пропуска')
     car = forms.CharField(label='Вид транспорта', required=False)
     car_dop = forms.CharField(label='Доп. вид трансфера', required=False)
+    gus_number = forms.CharField(label='Доп. вид трансфера', required=False)
     name_driver = forms.CharField(label='ФИО водителя', required=False)
     name_driver_dop = forms.CharField(label='ФИО водителя', required=False)
     # rrr = forms.CharField(label='machine', required=False)

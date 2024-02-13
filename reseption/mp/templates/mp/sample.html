@@ -90,6 +90,7 @@
                     </select>
                 </div>
                 <input type="text" class="form-control" style="display: none;" id="input_car" placeholder="Другое" {{ form.name_driver_dop }}
+                <input type="text" class="form-control" style="display: none;" id="gos_number" placeholder="Гос. номер" {{ form.gus_number }}
                 &nbsp;
             </div>
         </div>
@@ -171,23 +172,32 @@
 
     function updateCar() {
         var select = document.getElementById("values_car");
+        var customGos_number = document.getElementById('gos_number');
         var customValueInput = document.getElementById('input_car');
         if (select.value === 'custom') {
             customValueInput.style.display = 'inline-block';
+        }else if (select.value === 'Toyota Hilux') {
+        customGos_number.style.display = 'inline-block';
         } else {
             customValueInput.style.display = 'none';
         }
     }
 
     function updateQhere() {
-        var select = document.getElementById("where_value");
-        var customValueInput = document.getElementById('input_where');
-        if (select.value === 'custom') {
-            customValueInput.style.display = 'inline-block';
-        } else {
-            customValueInput.style.display = 'none';
-        }
+    var select = document.getElementById("where_value");
+    var customValueInput = document.getElementById('input_where');
+    var customGos_number = document.getElementById('gos_number'); // Исправлено на правильное имя переменной
+
+    if (select.value === 'custom') {
+        customValueInput.style.display = 'inline-block';
+        customGos_number.style.display = 'none'; // Скрываем второе поле ввода, если оно отображено
+    } 
+    else {
+        customValueInput.style.display = 'none';
+        customGos_number.style.display = 'none';
     }
+}
+    
 </script>
 
 </body>

@@ -30,7 +30,7 @@ def main(request):
             soglasoval = form.cleaned_data['soglasoval']
             # / home / teqilkka / media / template_docx.docx
             document = DocxTemplate(
-                '/home/teqilkka/media/template_docx.docx')  # /home/teqilkka/media/template_docx.docx
+                'reseption/mp/word_templates/template_docx.docx')  # /home/teqilkka/media/template_docx.docx
             if form.cleaned_data['osnovamie'] == 'custom':
                 osnovamie = form.cleaned_data['osnovamie_dop']
             if vid_transfer == 'custom':
@@ -43,6 +43,8 @@ def main(request):
                 where = form.cleaned_data['where_dop']
             if name_driver == 'custom':
                 name_driver = form.cleaned_data['name_driver_dop']
+            if name_driver == 'Toyota Hilux':
+                name_driver += form.cleaned_data['gus_number']
 
             context = {
                 'number': number_mp,
