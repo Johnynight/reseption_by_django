@@ -20,7 +20,7 @@ def main(request):
         if form.is_valid():
             number_mp = number_mp.serial_number + 1
             name_si = form.cleaned_data['item']
-            osnovamie = form.cleaned_data['osnovamie'] + ' ' +  form.cleaned_data['osnovamie_dop']
+            osnovamie = form.cleaned_data['osnovamie'] + ' ' + form.cleaned_data['osnovamie_dop']
             fio = form.cleaned_data['first_name'] + ' ' + form.cleaned_data['last_name']
             vid_transfer = form.cleaned_data['car']
             name_driver = form.cleaned_data['name_driver']
@@ -43,8 +43,10 @@ def main(request):
                 where = form.cleaned_data['where_dop']
             if name_driver == 'custom':
                 name_driver = form.cleaned_data['name_driver_dop']
-            if name_driver == 'Toyota Hilux':
-                name_driver += form.cleaned_data['gus_number']
+            # if name_driver == 'Toyota Hilux':
+            #     name_driver += form.cleaned_data['gus_number']
+            # if name_driver == 'Avis':
+            #     name_driver += ' ' + form.cleaned_data['gus_number']
 
             context = {
                 'number': number_mp,
@@ -52,9 +54,10 @@ def main(request):
                 'osnovaie': osnovamie,
                 'name_osn': fio,
                 'name_driver': name_driver,
-                'time': datetime.today().time().strftime("%H:%M"),
+                'time': datetime.now().strftime("%d.%m.%Y") + ' ' + datetime.today().time().strftime("%H:%M"),
                 'car': car,
-                'gos_number': vid_transfer,
+                'gos_number' : form.cleaned_data['gus_number'],
+                # 'gos_number': vid_transfer,
                 'where': where,
                 'owner': owner,
                 'why': soglasoval

@@ -45,7 +45,7 @@
             <div class="col-md-4">
                 <div class="input-group mb-3">
                     <select class="form-select" aria-label="Default select example" id="values" onchange="updateInput()" {{ form.osnovamie }}>
-                        <option selected>На право вывоза</option>
+                        <option selected>Основание</option>
                         <option value="ТТН №">ТТН№</option>
                         <option value="АКТ приема передачи №">АКТ приема передачи №</option>
                         <option value="Avis накладная">Avis накладная</option>
@@ -57,6 +57,11 @@
                     </select>
                 </div>
                 <input type="text" class="form-control" id="customValue" placeholder="" {{ form.osnovamie_dop }} &nbsp;
+<!--                <div class="input-group" id="place">-->
+<!--                    <span class="input-group-text">Кол-во мест/Дата</span>-->
+<!--                    <input type="text" aria-label="First name" class="form-control">-->
+<!--                    <input type="text" aria-label="Last name" class="form-control">-->
+<!--                </div> &nbsp;-->
             </div>
         </div>
 
@@ -97,20 +102,25 @@
 
         <div class="row">
             <div class="col-md-4">
-                <div class="input-group">
-                    <span class="input-group-text">Пропуск выдал (-а)</span>
-                    <input type="text" aria-label="Номер" class="form-control" value="Оразалиева Е." {{ form.owner }}
+                <div class="input-group mb-3">
+                    <select class="form-select" aria-label="Default select example"  {{ form.owner }}
+                        <option selected>Пропуск выдал</option>
+                        <option value="Оразалиева Е.">Оразалиева Е.</option>
+                        <option value="Сулейменова А.">Сулейменова А.</option>
+                        <option value="Тутаева З">Тутаева З.</option>
+                    </select>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="input-group mb-3">
                     <select class="form-select" aria-label="Default select example" id="where_value" onchange="updateQhere()" {{ form.where }}
                         <option selected>Куда</option>
-                        <option value="г. Караганда">г.Караганда</option>
+                        <option value="г.Караганда">г.Караганда</option>
                         <option value="п.Бозшаколь">п.Бозшаколь</option>
                         <option value="п.Шубарколь">п.Шубарколь</option>
                         <option value="г.Астана">г.Астана</option>
                         <option value="г.Алматы">г.Алматы</option>
+                        <option value="Внутренне перемещение по РК">Внутренне перемещение по РК</option>
                         <option value="custom">Другое</option>
                     </select>
                 </div>
@@ -151,21 +161,29 @@
     function updateInput() {
         var select = document.getElementById("values");
         var customValueInput = document.getElementById("customValue");
-
         var selectedOption = select.options[select.selectedIndex];
         var selectedOptionText = selectedOption.innerText;
+        var Place = document.getElementById("place");
 
-        customValueInput.setAttribute('aria-placeholder', selectedOptionText);
-        // или
         customValueInput.placeholder = selectedOptionText;
+
+        if (select.value === "ТТН№") {
+            Place.style.display = "inline-block";
+        } else {
+            Place.style.display = "none";
+        }
     }
 
     function updateInput_for_driver() {
         var select = document.getElementById("values_driver");
         var customValueInput = document.getElementById("driver");
+        var customValuePlace = document.getElementById("place");
         if (select.value === "custom") {
             customValueInput.style.display = "inline-block";
-        } else {
+        }
+
+
+        else {
             customValueInput.style.display = "none";
         }
     }
@@ -179,6 +197,10 @@
             customGos_number.style.display = 'none';
         }
         else if (select.value === 'Toyota Hilux') {
+        customGos_number.style.display = 'inline-block';
+        customValueInput.style.display = 'none';
+        }
+        else if (select.value === 'Avis') {
         customGos_number.style.display = 'inline-block';
         customValueInput.style.display = 'none';
         }
