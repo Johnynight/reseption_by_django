@@ -1,5 +1,8 @@
 import pprint
 from datetime import datetime
+
+from django.contrib.auth.decorators import login_required
+
 from .models import Material_pass
 from django.shortcuts import render
 from .forms import MyForm
@@ -12,12 +15,13 @@ from django.utils import timezone
 data = datetime.now().strftime("%d.%m.%Y")
 time = datetime.today().time().strftime("%H:%M")
 
-
+@login_required
 def main(request):
     number_mp = Material_pass.objects.last()
     if request.method == "POST":
         form = MyForm(request.POST)
         if form.is_valid():
+
             number_mp = number_mp.serial_number + 1
             name_si = form.cleaned_data['item']
             osnovamie = form.cleaned_data['osnovamie'] + ' ' + form.cleaned_data['osnovamie_dop']
