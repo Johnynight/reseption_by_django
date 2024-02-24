@@ -56,7 +56,7 @@ class Mp_admin(admin.ModelAdmin):
 
         return response
 
-    export_to_csv.short_description = "Экспортировать в CSV"  Определяем отображаемое имя для действия
+    export_to_csv.short_description = "Экспортировать в CSV"
 
     actions = ['export_to_csv']
 
